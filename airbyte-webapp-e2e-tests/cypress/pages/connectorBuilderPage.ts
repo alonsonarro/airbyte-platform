@@ -53,6 +53,10 @@ export const goToView = (view: string) => {
   cy.get(`button[data-testid=navbutton-${view}]`).click();
 };
 
+export const goToStreamConfigurationTab = () => {
+  cy.get('[data-testid="tag-tab-stream-configuration"]').click({ force: true });
+};
+
 export const openTestInputs = () => {
   cy.get(testInputsButton).click();
 };
@@ -144,6 +148,12 @@ export const testStream = () => {
 };
 
 const GO_BACK_AND_GO_NEXT_BUTTONS = 2
+/*
+  To validate the number of pages, this test validates that the pages number are found and that there are
+  (<numberOfPages> + 2) test page items. The '2' being the arrows.
+
+  If anything regarding the arrows is changed, this test will probably fail.
+*/
 export const assertHasNumberOfPages = (numberOfPages: number) => {
   for (var i = 0; i < numberOfPages; i++) {
     cy.get(testPageItem).contains(i + 1).should('exist')

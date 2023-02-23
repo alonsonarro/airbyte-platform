@@ -16,6 +16,7 @@ import {
   enterUrlPathFromForm,
   getDetectedSchemaElement,
   getSlicesFromDropdown,
+  goToStreamConfigurationTab,
   goToTestPage,
   goToView,
   openDetectedSchemaTab,
@@ -63,7 +64,7 @@ export const configureStreamSlicer = (numberOfSlices: number) => {
 
 export const cleanUp = () => {
   goToView("0");
-  cy.get('[data-testid="tag-tab-stream-configuration"]').click({ force: true });
+  goToStreamConfigurationTab();
   disablePagination();
   disableStreamSlicer();
 }
